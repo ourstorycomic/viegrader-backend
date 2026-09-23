@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>VieGrader · Cổng chấm bài cho giảng viên</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,"Segoe UI",sans-serif;color:#15273b;background:#f2f5f8}
+    *{box-sizing:border-box}body{margin:0}header{background:#15324e;color:white;padding:20px max(22px,calc((100vw - 1150px)/2))}
+    header h1{margin:0;font-size:1.5rem}header p{margin:6px 0 0;color:#c5d6e5}
+    main{max-width:1150px;margin:20px auto;padding:0 18px 60px;display:grid;gap:18px}
+    section{background:white;border:1px solid #d8e1ea;border-radius:10px;padding:20px;box-shadow:0 2px 8px #142f4510}
+    h2{margin:0 0 14px;font-size:1.12rem}h3{margin:16px 0 8px}p{line-height:1.5;color:#4a5e72}
+    form{display:flex;gap:12px;flex-wrap:wrap;align-items:end}label{display:flex;flex-direction:column;gap:5px;font-weight:600;font-size:.88rem;min-width:180px;flex:1}
+    input,select,button{font:inherit;padding:10px;border:1px solid #c6d3df;border-radius:6px;background:white;color:#172c41}
+    input[type=file]{max-width:100%}button{background:#176fa4;color:white;border:0;cursor:pointer;font-weight:600}
+    button:hover{background:#145985}button:disabled{background:#9eb0bc;cursor:wait}.secondary{background:#40607b}.danger{background:#9a5420}
+    .muted{font-size:.86rem;color:#60738a}.status{white-space:pre-wrap;background:#e8f0f7;padding:10px 12px;border-radius:6px;margin:12px 0 0}
+    .err{background:#fae9e6;color:#91392d}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .scroll{overflow:auto}table{border-collapse:collapse;width:100%;font-size:.88rem}th,td{border-bottom:1px solid #e0e7ed;padding:10px;text-align:left;vertical-align:middle}
+    th{background:#edf3f7;position:sticky;top:0}td input{width:95px;padding:7px}td button{font-size:.83rem;padding:8px}
+    .tag{display:inline-block;background:#e8edf5;padding:4px 7px;border-radius:4px;white-space:nowrap}
+    dialog{width:min(1100px,96vw);max-height:92vh;border:0;border-radius:12px;padding:0;box-shadow:0 18px 60px #10263855}
+    dialog::backdrop{background:#14263899}.review-head{position:sticky;top:0;background:#15324e;color:white;padding:16px 20px;display:flex;justify-content:space-between;align-items:center;z-index:2}
+    .review-head h2{margin:0}.review-head button{background:#fff;color:#15324e;padding:6px 12px}.review-grid{display:grid;grid-template-columns:1.35fr .85fr;gap:16px;padding:18px}
+    .tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}.tabs button{background:#e6eef5;color:#23415d}.tabs button.active{background:#176fa4;color:white}
+    .document{white-space:pre-wrap;background:#fbfcfd;border:1px solid #d8e1ea;border-radius:8px;padding:16px;min-height:350px;max-height:58vh;overflow:auto;line-height:1.65}
+    .review-panel{background:#f5f8fb;border:1px solid #d8e1ea;border-radius:8px;padding:16px}.review-panel label{margin:10px 0}.review-panel textarea{width:100%;min-height:120px;padding:10px;border:1px solid #c6d3df;border-radius:6px;font:inherit}
+    .metric{display:grid;grid-template-columns:1fr auto;gap:8px;padding:8px 0;border-bottom:1px solid #dce5ec}.warning{color:#a13d25;font-weight:700}.ok{color:#387526;font-weight:700}
+    @media(max-width:760px){.grid,.review-grid{grid-template-columns:1fr}table{min-width:850px}.document{max-height:40vh}}
+  </style>
+</head>
+<body>
+<header><h1>VieGrader · Cổng chấm bài</h1><p>Toán Rời Rạc IT04 · điểm tổng đề xuất · giảng viên duyệt trước khi gửi LMS</p></header>
+<main>
+  <div class="grid">
+    <section><h2>1. Tạo bộ đề chấm</h2>
+      <form id="examForm"><label>Mã đề<select name="exam_id" required><option>De_1</option><option>De_2</option><option>De_3</option><option>De_4</option><option>De_5</option></select></label>
+      <label>Đề thi (TXT, DOCX, PDF)<input name="question" type="file" required accept=".txt,.docx,.pdf"></label>
+      <label>Đáp án chuẩn (TXT, DOCX, PDF)<input name="answer" type="file" required accept=".txt,.docx,.pdf"></label>
+      <button>Tải đề và đáp án</button></form>
+      <p class="muted">Rubric IT04 lấy theo mã đề từ thư mục rubric đã cấu hình. Bản QLoRA dùng cả đề và đáp án đã tải; nhánh hybrid dùng đề và rubric YAML, không trực tiếp sử dụng văn bản đáp án tải lên.</p>
+    </section>
+    <section><h2>2. Gửi bài để chấm</h2>
+      <form id="jobForm"><label>Bộ đề đã tạo<select id="examRef" name="exam_ref" required></select></label>
+      <label>Phương pháp<select name="mode"><option value="hybrid">TF-IDF/Ridge + rubric</option><option value="qlora">QLoRA IT04 (GPU)</option></select></label>
+      <label>Bài làm (chọn nhiều tệp)<input type="file" name="files" multiple required accept=".txt,.docx,.pdf,.csv"></label>
+      <button>Bắt đầu chấm</button></form>
+      <p class="muted">CSV gồm cột essay_id,text; tối đa 100 bài/lô. PDF dạng ảnh cần OCR trước. Điểm theo từng câu, nếu có trong báo cáo hybrid, chỉ là ước lượng theo quy tắc.</p>
+    </section>
+  </div>
+  <section><h2>3. Kiểm tra và duyệt điểm</h2>
+    <form id="pickForm"><label>Lượt chấm<select id="jobPick"></select></label><button type="button" id="refresh">Làm mới trạng thái</button><button type="button" id="download" class="secondary">Tải kết quả CSV</button></form>
+    <p id="jobInfo" class="muted">Chưa có lượt chấm.</p><div class="scroll"><table><thead><tr><th>Bài làm</th><th>Điểm đề xuất</th><th>Cảnh báo</th><th>Trạng thái rà soát</th><th>Xem bài</th><th>Assignment ID</th><th>Gửi LMS</th></tr></thead><tbody id="results"></tbody></table></div>
+    <p class="muted">Mỗi điểm cần giảng viên xác nhận. Chế độ Moodle mặc định là mô phỏng; khi cấu hình gửi thật, trình duyệt yêu cầu xác nhận riêng. Trường hợp trả lời mạng không rõ kết quả phải đối soát trong Moodle, hệ thống không tự gửi lại.</p>
+  </section>
+  <div id="status" role="status" aria-live="polite" class="status">Đang tải trạng thái hệ thống…</div>
+</main>
+<dialog id="reviewDialog">
+  <div class="review-head"><h2 id="reviewTitle">Rà soát bài làm</h2><button type="button" onclick="$('reviewDialog').close()">Đóng</button></div>
+  <div class="review-grid">
+    <div><div class="tabs" id="resourceTabs"></div><div id="documentText" class="document"></div></div>
+    <div class="review-panel">
+      <div class="metric"><b>Điểm đề xuất</b><strong id="proposedScore">—</strong></div>
+      <div class="metric"><b>Cờ kiểm tra</b><span id="reviewFlags">—</span></div>
+      <div class="metric"><b>Nhận xét mô hình</b><span id="modelFeedback">—</span></div>
+      <label>Điểm giảng viên duyệt<input id="reviewScore" type="number" min="0" max="10" step=".25"></label>
+      <label>Nhận xét của giảng viên<textarea id="teacherComment" maxlength="4000" placeholder="Nêu căn cứ điều chỉnh điểm hoặc nhận xét cần phản hồi cho sinh viên"></textarea></label>
+      <label>Moodle user ID<input id="reviewMoodleUser" type="number" min="1" step="1"></label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap"><button id="approveReview" type="button">Duyệt điểm</button><button id="manualReview" type="button" class="secondary">Chuyển chấm thủ công</button></div>
+      <p class="muted">Điểm cuối cùng chỉ được ghi nhận sau thao tác của giảng viên. Nhận xét mô hình là gợi ý và cần được đối chiếu với toàn văn bài.</p>
+    </div>
+  </div>
+</dialog>
+<script>
+const $ = x => document.getElementById(x);
+async function call(path, options={}) {
+  const res = await fetch(path, options); let data;
+  try { data = await res.json() } catch { data = await res.text() }
+  if (!res.ok) throw Error(typeof data === 'object' ? (data.detail || JSON.stringify(data)) : data);
+  return data;
+}
+function message(s, error=false){$('status').textContent=s;$('status').className='status'+(error?' err':'')}
+function el(tag,text){const node=document.createElement(tag);node.textContent=text??'';return node}
+function field(kind,value){const node=document.createElement('input');node.type=kind;node.value=value??'';if(kind==='number'){node.step='.25';node.min='0';node.max='10'}return node}
+function button(label, action, cls=''){const node=el('button',label);node.type='button';node.className=cls;node.onclick=action;return node}
+async function loadLists(){
+  const [health,exams,jobs]=await Promise.all([call('/api/v1/health'),call('/api/v1/exams'),call('/api/v1/jobs')]);
+  const selected=$('jobPick').value;$('examRef').replaceChildren(...exams.map(v=>{let o=el('option',v.exam_id+' · '+v.id.slice(0,8));o.value=v.id;return o}));
+  $('jobPick').replaceChildren(...jobs.map(v=>{let o=el('option',v.id.slice(0,8)+' · '+v.state+' · '+v.total+' bài');o.value=v.id;return o}));
+  if(jobs.some(v=>v.id===selected))$('jobPick').value=selected;
+  message(`Dịch vụ: ${health.status} · Baseline: ${health.baseline_ready?'sẵn sàng':'thiếu mô hình'} · QLoRA: ${health.qlora_ready?'sẵn sàng':'thiếu adapter'} · Moodle: ${health.moodle_mode}`);
+  await loadJob();
+}
+async function loadJob(){
+  const id=$('jobPick').value;if(!id){$('results').replaceChildren();return}
+  const {job}=await call('/api/v1/jobs/'+encodeURIComponent(id));
+  const essays=await call('/api/v1/jobs/'+encodeURIComponent(id)+'/review-queue');
+  $('jobInfo').textContent=`Mã lượt: ${job.id} · ${job.mode} · ${job.state} · ${job.total} bài${job.error?' · Lỗi: '+job.error:''}`;
+  const rows=[];
+  for(const item of essays){
+    const tr=document.createElement('tr');const assignment=field('number','');assignment.min='1';assignment.step='1';
+    const reviewStatus=item.review_status==='approved'?'Đã duyệt':item.review_status==='manual_review'?'Chấm thủ công':'Chờ rà soát';
+    const cells=[el('td',item.filename),el('td',item.proposed??'Cần xem lại'),el('td',item.flags||'—'),el('td',reviewStatus),document.createElement('td'),document.createElement('td'),document.createElement('td')];
+    cells[4].append(button('Xem toàn văn',()=>openReview(item.id)));
+    cells[5].append(assignment);
+    cells[6].append(button(item.push_state==='not_sent'?'Gửi / mô phỏng':item.push_state,async()=>{
+      if(!confirm('Xác nhận gửi điểm đã duyệt vào LMS hoặc tạo bản mô phỏng?'))return;
+      try{let headers={'Content-Type':'application/json'};if(confirm('Nếu hệ thống đang ở chế độ LIVE, bạn xác nhận gửi điểm THẬT sang Moodle?'))headers['X-VieGrader-Confirm-Live']='yes';
+        const result=await call('/api/v1/essays/'+item.id+'/moodle-push',{method:'POST',headers,body:JSON.stringify({assignment_id:Number(assignment.value)})});message(JSON.stringify(result));await loadJob()}
+      catch(e){message(e.message,true)}
+    },'danger'));
+    cells.forEach(cell=>tr.append(cell));rows.push(tr)
+  }
+  $('results').replaceChildren(...rows);
+}
+let currentReview=null;
+async function openReview(id){
+  try{
+    currentReview=await call('/api/v1/essays/'+encodeURIComponent(id));const e=currentReview.essay,r=currentReview.resources;
+    $('reviewTitle').textContent='Rà soát '+e.filename+' · '+r.exam_id;$('proposedScore').textContent=e.proposed??'Không hợp lệ';
+    $('reviewFlags').textContent=e.flags||'Không có';$('reviewFlags').className=e.flags?'warning':'ok';$('modelFeedback').textContent=e.feedback||'Chưa có nhận xét mô hình';
+    $('reviewScore').value=e.approved_score??e.proposed??'';$('teacherComment').value=e.teacher_comment||'';$('reviewMoodleUser').value=e.moodle_user_id||'';
+    const resources={"Bài làm":e.text,"Đề thi":r.question,"Đáp án":r.answer,"Rubric":r.rubric||'Không có nội dung rubric'};
+    const show=name=>{$('documentText').textContent=resources[name];[...$('resourceTabs').children].forEach(b=>b.classList.toggle('active',b.textContent===name))};
+    $('resourceTabs').replaceChildren(...Object.keys(resources).map(name=>button(name,()=>show(name))));show('Bài làm');$('reviewDialog').showModal();
+  }catch(err){message(err.message,true)}
+}
+$('approveReview').onclick=async()=>{if(!currentReview)return;try{await call('/api/v1/essays/'+currentReview.essay.id+'/approve',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({score:Number($('reviewScore').value),comment:$('teacherComment').value,moodle_user_id:$('reviewMoodleUser').value?Number($('reviewMoodleUser').value):null})});$('reviewDialog').close();message('Đã lưu điểm và nhận xét của giảng viên');await loadJob()}catch(e){message(e.message,true)}};
+$('manualReview').onclick=async()=>{if(!currentReview)return;try{await call('/api/v1/essays/'+currentReview.essay.id+'/return-for-manual-review',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({comment:$('teacherComment').value})});$('reviewDialog').close();message('Đã chuyển bài sang chấm thủ công');await loadJob()}catch(e){message(e.message,true)}};
+$('examForm').onsubmit=async e=>{e.preventDefault();try{const data=await call('/api/v1/exams',{method:'POST',body:new FormData(e.target)});message('Đã lưu bộ đề '+data.id);await loadLists()}catch(err){message(err.message,true)}};
+$('jobForm').onsubmit=async e=>{e.preventDefault();try{const data=await call('/api/v1/jobs',{method:'POST',body:new FormData(e.target)});message('Đã nhận lô '+data.job_id);await loadLists();$('jobPick').value=data.job_id;await loadJob()}catch(err){message(err.message,true)}};
+$('jobPick').onchange=()=>loadJob().catch(e=>message(e.message,true));$('refresh').onclick=()=>loadLists().catch(e=>message(e.message,true));
+$('download').onclick=()=>{if($('jobPick').value)location.href='/api/v1/jobs/'+$('jobPick').value+'/results.csv'};
+loadLists().catch(e=>message(e.message,true));
+</script>
+</body></html>

@@ -1,0 +1,171 @@
+rubric_id: toan_roi_rac_De_4
+name: Rubric Toán Rời Rạc - De 4
+scale_max: 10.0
+scale_step: 0.25
+meta:
+  version: '1.0'
+  author: Antigravity
+  applies_to: Đề thi giữa kỳ môn Toán Rời Rạc - De_4
+criteria:
+- key: cau_1a
+  name: 'Câu 1a: Chọn 4 buồng liền nhau cùng 1 tầng'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 77'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 77 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_1b
+  name: 'Câu 1b: Chọn 4 tầng liền kề, mỗi tầng 4 buồng'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 8×7^4'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 8×7^4 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_2
+  name: 'Câu 2: Số có 3 chữ số chia hết cho 2 hoặc 3 hoặc 7'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 642'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 642 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_3
+  name: 'Câu 3: Phiếu 10 câu x 4 phương án, bắt buộc trả lời'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 4^10'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 4^10 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_4a
+  name: 'Câu 4a: Dãy nhị phân dài 10, không ràng buộc'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 1024'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 1024 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_4b
+  name: 'Câu 4b: 2 bit đầu = 1, 2 bit cuối = 0'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 64'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 64 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_5a
+  name: 'Câu 5a: 17 đường thẳng vị trí tổng quát'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 154'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 154 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_5b
+  name: 'Câu 5b: Có 1 bộ 3 đường thẳng song song'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 151'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 151 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_5c
+  name: 'Câu 5c: Có 1 điểm đồng quy của 4 đường thẳng'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 151'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 151 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+- key: cau_5d
+  name: 'Câu 5d: 1 bộ 3 đường song song + 2 điểm đồng quy'
+  weight: 0.1
+  max_score: 1.0
+  description: 'Đáp số chuẩn: 149'
+  levels:
+  - name: Đúng hoàn toàn
+    score: 1.0
+    descriptor: Ghi rõ đáp số là 149 và có giải thích hợp lý.
+  - name: Đúng một phần
+    score: 0.5
+    descriptor: Có hướng giải đúng nhưng tính toán sai đáp số.
+  - name: Sai
+    score: 0.0
+    descriptor: Sai hoàn toàn hoặc không làm.
+rules:
+- id: R01_bai_trong
+  description: Bài làm trống
+  when: n_words < 5
+  action: cap_total
+  value: 0.0
+  flag: BAI_TRONG
+  stop: true
+thresholds:
+  min_words: 10
+  max_words: 5000
+  review_rate_target: 0.1

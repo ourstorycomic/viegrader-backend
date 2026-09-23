@@ -1,0 +1,97 @@
+{
+  "type": "index_and_retrieval_audit_no_grading_performed",
+  "n_chunks": 770,
+  "n_exact_duplicate_chunks": 0,
+  "sources": [
+    {
+      "file": "BaiGiang_ToanRR.pdf",
+      "pdf_pages": 137,
+      "indexed_pages": 137,
+      "unindexed_pages": 0,
+      "chunks": 238,
+      "pdf_sha256": "2f567b240a5bfd6ea09a0d89fe941fcee82b8b08557a6b23a216bb293c72344d",
+      "mean_chunk_chars": 840.2
+    },
+    {
+      "file": "TRR_NguyenDucNghia.pdf",
+      "pdf_pages": 298,
+      "indexed_pages": 290,
+      "unindexed_pages": 8,
+      "chunks": 532,
+      "pdf_sha256": "b56899afc4811bdf697494927179c3e8e59a3850df1a347de75ebe437a7790ab",
+      "mean_chunk_chars": 840.9
+    }
+  ],
+  "retrieval_probes": [
+    {
+      "query": "nguyên lý bù trừ",
+      "results": [
+        {
+          "document_id": "TRR_NguyenDucNghia.pdf",
+          "page": 28,
+          "chunk_id": "TRR_NguyenDucNghia:p28:c00049",
+          "score": 0.333
+        },
+        {
+          "document_id": "BaiGiang_ToanRR.pdf",
+          "page": 1,
+          "chunk_id": "BaiGiang_ToanRR:p1:c00000",
+          "score": 0.2782
+        },
+        {
+          "document_id": "BaiGiang_ToanRR.pdf",
+          "page": 11,
+          "chunk_id": "BaiGiang_ToanRR:p11:c00023",
+          "score": 0.2428
+        }
+      ]
+    },
+    {
+      "query": "đồ thị Euler chu trình",
+      "results": [
+        {
+          "document_id": "BaiGiang_ToanRR.pdf",
+          "page": 75,
+          "chunk_id": "BaiGiang_ToanRR:p75:c00132",
+          "score": 0.42
+        },
+        {
+          "document_id": "BaiGiang_ToanRR.pdf",
+          "page": 56,
+          "chunk_id": "BaiGiang_ToanRR:p56:c00102",
+          "score": 0.352
+        },
+        {
+          "document_id": "BaiGiang_ToanRR.pdf",
+          "page": 56,
+          "chunk_id": "BaiGiang_ToanRR:p56:c00101",
+          "score": 0.3157
+        }
+      ]
+    },
+    {
+      "query": "quan hệ tương đương",
+      "results": [
+        {
+          "document_id": "TRR_NguyenDucNghia.pdf",
+          "page": 12,
+          "chunk_id": "TRR_NguyenDucNghia:p12:c00019",
+          "score": 0.352
+        },
+        {
+          "document_id": "TRR_NguyenDucNghia.pdf",
+          "page": 12,
+          "chunk_id": "TRR_NguyenDucNghia:p12:c00018",
+          "score": 0.2479
+        },
+        {
+          "document_id": "TRR_NguyenDucNghia.pdf",
+          "page": 12,
+          "chunk_id": "TRR_NguyenDucNghia:p12:c00017",
+          "score": 0.214
+        }
+      ]
+    }
+  ],
+  "interpretation": "Retrieval samples demonstrate indexing, not grading accuracy."
+}

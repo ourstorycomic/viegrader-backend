@@ -1,0 +1,24 @@
+[Unit]
+Description=VieGrader teacher grading portal
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=giangvien
+WorkingDirectory=/opt/viegrader
+EnvironmentFile=/etc/viegrader/portal.env
+ExecStart=/opt/viegrader/.venv/bin/viegrader-teacher-portal
+Restart=on-failure
+RestartSec=5
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/viegrader
+RestrictSUIDSGID=true
+LockPersonality=true
+
+[Install]
+WantedBy=multi-user.target

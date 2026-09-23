@@ -1,0 +1,21 @@
+[Unit]
+Description=VieGrader Gradio GUI
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=viegrader
+Group=viegrader
+WorkingDirectory=/opt/viegrader/app
+EnvironmentFile=/etc/viegrader/viegrader.env
+ExecStart=/opt/viegrader/app/.venv/bin/python -m viegrader.cli ubuntu-gui --config /etc/viegrader/config.ubuntu.json
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=30
+NoNewPrivileges=true
+PrivateTmp=true
+ReadWritePaths=/opt/viegrader/data /opt/viegrader/artifacts /opt/viegrader/reports /opt/viegrader/logs /opt/viegrader/cache
+
+[Install]
+WantedBy=multi-user.target

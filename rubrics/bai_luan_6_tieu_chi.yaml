@@ -1,0 +1,140 @@
+rubric_id: bai_luan_vi_6_traits_v1
+name: "Rubric phân tích sáu tiêu chí cho bài luận tiếng Việt"
+scale_max: 30.0
+scale_step: 1.0
+
+meta:
+  version: "1.0"
+  author: "Nhóm nghiên cứu VieGrader"
+  applies_to: "Bài luận học thuật tiếng Việt 300–1500 từ"
+  updated: "2026-09-07"
+  research_note: "Dùng điểm độc lập của hai giám khảo trước hòa giải để tính human benchmark."
+
+criteria:
+  - key: noi_dung
+    name: "Nội dung và mức độ đáp ứng đề"
+    weight: 0.1666666667
+    max_score: 5.0
+    description: "Mức độ đúng, đủ, liên quan và bám sát yêu cầu của đề bài."
+    feature_hints: [sim_prompt, keyword_coverage, term_density, content_words]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Đáp ứng đầy đủ yêu cầu; kiến thức chính xác, sâu và có trọng tâm."}
+      - {name: "Tốt", score: 4.0, descriptor: "Đáp ứng phần lớn yêu cầu; còn thiếu một vài ý phụ hoặc chiều sâu."}
+      - {name: "Đạt", score: 3.0, descriptor: "Nắm được vấn đề chính nhưng phát triển chưa đầy đủ; có sai sót nhỏ."}
+      - {name: "Yếu", score: 2.0, descriptor: "Chỉ đáp ứng một phần; thiếu nhiều ý quan trọng hoặc có sai sót đáng kể."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Hiểu rất hạn chế, phần lớn nội dung không đáp ứng đề."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Bỏ trống, lạc đề hoàn toàn hoặc chỉ chép đề."}
+
+  - key: lap_luan
+    name: "Lập luận và bằng chứng"
+    weight: 0.1666666667
+    max_score: 5.0
+    description: "Chất lượng luận điểm, lí lẽ, dẫn chứng và quan hệ giữa bằng chứng với kết luận."
+    feature_hints: [argument_markers, connective_density, evidence_density]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Luận điểm rõ; lí lẽ chặt chẽ; bằng chứng phù hợp và được phân tích thuyết phục."}
+      - {name: "Tốt", score: 4.0, descriptor: "Lập luận nhìn chung hợp lí; bằng chứng phù hợp nhưng chưa đồng đều."}
+      - {name: "Đạt", score: 3.0, descriptor: "Có luận điểm và lí lẽ cơ bản nhưng phân tích còn nông hoặc thiên về liệt kê."}
+      - {name: "Yếu", score: 2.0, descriptor: "Lập luận rời rạc; bằng chứng ít hoặc liên hệ chưa rõ."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Chủ yếu khẳng định không có lí lẽ hay bằng chứng hỗ trợ."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Không hình thành được lập luận."}
+
+  - key: to_chuc
+    name: "Tổ chức và tính mạch lạc"
+    weight: 0.1666666667
+    max_score: 5.0
+    description: "Bố cục toàn bài, tổ chức đoạn và liên kết logic giữa các ý."
+    feature_hints: [n_paragraphs, connective_density, structure_score]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Bố cục nhất quán; đoạn văn có chức năng rõ; chuyển ý tự nhiên."}
+      - {name: "Tốt", score: 4.0, descriptor: "Tổ chức hợp lí; một vài chuyển đoạn hoặc liên kết còn gượng."}
+      - {name: "Đạt", score: 3.0, descriptor: "Có mở–thân–kết hoặc trật tự nhận biết được nhưng liên kết chưa ổn định."}
+      - {name: "Yếu", score: 2.0, descriptor: "Ý sắp xếp thiếu logic; đoạn văn mất cân đối hoặc chuyển ý đột ngột."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Các ý rời rạc, khó xác định cấu trúc."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Không tạo thành bài viết có tổ chức."}
+
+  - key: tu_vung
+    name: "Từ vựng và văn phong"
+    weight: 0.1666666666
+    max_score: 5.0
+    description: "Độ chính xác, đa dạng của từ vựng và sự phù hợp của văn phong học thuật."
+    feature_hints: [ttr, term_density, informal_rate, content_words]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Từ vựng chính xác, linh hoạt; thuật ngữ phù hợp; văn phong học thuật nhất quán."}
+      - {name: "Tốt", score: 4.0, descriptor: "Từ vựng đủ rộng và nhìn chung chính xác; đôi chỗ lặp hoặc chưa tự nhiên."}
+      - {name: "Đạt", score: 3.0, descriptor: "Vốn từ đủ diễn đạt ý chính nhưng còn lặp, dùng từ chung chung hoặc pha văn nói."}
+      - {name: "Yếu", score: 2.0, descriptor: "Vốn từ hạn chế; dùng sai từ nhiều lần và ảnh hưởng độ rõ."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Từ vựng rất hạn chế, thường xuyên không truyền đạt đúng ý."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Không đủ văn bản để đánh giá."}
+
+  - key: ngu_phap
+    name: "Ngữ pháp và cấu trúc câu"
+    weight: 0.1666666666
+    max_score: 5.0
+    description: "Độ chính xác và đa dạng của cấu trúc câu, quan hệ cú pháp và khả năng kiểm soát lỗi."
+    feature_hints: [mean_sentence_len, sentence_len_std, spell_error_rate]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Cấu trúc câu đa dạng, chính xác; lỗi hiếm và không có tính hệ thống."}
+      - {name: "Tốt", score: 4.0, descriptor: "Kiểm soát tốt câu đơn và câu phức; một số lỗi nhỏ không cản trở hiểu."}
+      - {name: "Đạt", score: 3.0, descriptor: "Câu nhìn chung hiểu được nhưng cấu trúc ít đa dạng và có lỗi lặp lại."}
+      - {name: "Yếu", score: 2.0, descriptor: "Nhiều câu thiếu thành phần hoặc quan hệ cú pháp không rõ, gây khó hiểu."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Lỗi ngữ pháp dày đặc, phần lớn câu khó hiểu."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Không đủ câu hoàn chỉnh để đánh giá."}
+
+  - key: quy_uoc
+    name: "Chính tả, dấu câu và quy ước trình bày"
+    weight: 0.1666666667
+    max_score: 5.0
+    description: "Mức độ tuân thủ chính tả tiếng Việt, dấu câu, viết hoa, xuống đoạn và trích dẫn."
+    feature_hints: [spell_error_rate, punct_error_rate, teencode_rate, has_citation]
+    levels:
+      - {name: "Xuất sắc", score: 5.0, descriptor: "Hầu như không có lỗi; trình bày và trích dẫn nhất quán."}
+      - {name: "Tốt", score: 4.0, descriptor: "Có ít lỗi nhỏ, không ảnh hưởng khả năng đọc."}
+      - {name: "Đạt", score: 3.0, descriptor: "Có lỗi lặp lại nhưng văn bản vẫn dễ đọc và nhận biết cấu trúc."}
+      - {name: "Yếu", score: 2.0, descriptor: "Nhiều lỗi chính tả/dấu câu hoặc trình bày gây gián đoạn việc đọc."}
+      - {name: "Rất yếu", score: 1.0, descriptor: "Lỗi dày đặc, làm giảm mạnh khả năng đọc hiểu."}
+      - {name: "Không có bằng chứng", score: 0.0, descriptor: "Không đủ văn bản để đánh giá."}
+
+rules:
+  - id: R01_bai_trong
+    description: "Bài trống hoặc dưới 20 từ: 0 điểm."
+    when: "n_words < 20"
+    action: cap_total
+    value: 0.0
+    flag: "BAI_TRONG"
+    stop: true
+  - id: R02_nghi_lac_de
+    description: "Độ tương đồng với đề quá thấp: chuyển giám khảo."
+    when: "sim_prompt < 0.15 and n_words >= 20"
+    action: review
+    flag: "NGHI_LAC_DE"
+    reason: "Nội dung có thể không bám đề"
+  - id: R03_chep_de
+    description: "Chép đề trên 60%: nội dung bằng 0."
+    when: "prompt_copy_ratio > 0.60"
+    action: set_criterion
+    target: noi_dung
+    value: 0.0
+    flag: "CHEP_DE_BAI"
+  - id: R04_qua_ngan
+    description: "Dưới 50% độ dài tối thiểu: trần điểm 50%."
+    when: "n_words < 0.5 * min_words"
+    action: cap_total
+    value_expr: "0.5 * scale_max"
+    flag: "QUA_NGAN"
+  - id: R05_nghi_sao_chep
+    description: "Trùng lặp nội bộ cao: chuyển xử lý liêm chính."
+    when: "dup_ratio >= 0.80"
+    action: review
+    flag: "NGHI_SAO_CHEP"
+    reason: "Trùng lặp nội bộ vượt ngưỡng"
+  - id: R06_do_tin_cay_thap
+    description: "Mô hình thiếu tự tin: phúc tra thủ công."
+    when: "confidence < 0.50"
+    action: review
+    reason: "Độ tin cậy dự đoán thấp"
+
+thresholds:
+  min_words: 300
+  max_words: 1500
+  review_rate_target: 0.15

@@ -1,0 +1,18 @@
+services:
+  viegrader:
+    build:
+      context: .
+      dockerfile: Dockerfile.ubuntu-cu128
+    gpus: all
+    ports:
+      - "7860:7860"
+    env_file:
+      - deploy/viegrader.env
+    shm_size: "8gb"
+    volumes:
+      - ./data:/opt/viegrader/data
+      - ./artifacts:/opt/viegrader/artifacts
+      - ./reports:/opt/viegrader/reports
+      - ./logs:/opt/viegrader/logs
+      - ./cache:/opt/viegrader/cache
+    restart: unless-stopped

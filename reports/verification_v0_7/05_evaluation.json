@@ -1,0 +1,74 @@
+{
+  "schema": "viegrader.it04.evaluation/v1",
+  "created_at": "2026-09-11T03:06:51.755758+00:00",
+  "metrics": {
+    "test": {
+      "model_total": {
+        "n": 24,
+        "MAE": 1.59375,
+        "RMSE": 1.8078244291597196,
+        "QWK": 0.28378378378378377,
+        "pearson": 0.5034500295125384,
+        "bias": -0.19791666666666666,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.4166666666666667
+      },
+      "final_total": {
+        "n": 24,
+        "MAE": 1.59375,
+        "RMSE": 1.8078244291597196,
+        "QWK": 0.28378378378378377,
+        "pearson": 0.5034500295125384,
+        "bias": -0.19791666666666666,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.4166666666666667
+      }
+    },
+    "train": {
+      "model_total": {
+        "n": 102,
+        "MAE": 1.2598039215686274,
+        "RMSE": 1.5533802483868628,
+        "QWK": 0.5771179039301311,
+        "pearson": 0.8106606422698135,
+        "bias": 0.00980392156862745,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.5490196078431373
+      },
+      "final_total": {
+        "n": 102,
+        "MAE": 1.2598039215686274,
+        "RMSE": 1.5533802483868628,
+        "QWK": 0.5771179039301311,
+        "pearson": 0.8106606422698135,
+        "bias": 0.00980392156862745,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.5490196078431373
+      }
+    },
+    "validation": {
+      "model_total": {
+        "n": 24,
+        "MAE": 1.4270833333333333,
+        "RMSE": 1.6747201258717828,
+        "QWK": 0.41190198366394404,
+        "pearson": 0.7119188874196477,
+        "bias": 0.11458333333333333,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.4166666666666667
+      },
+      "final_total": {
+        "n": 24,
+        "MAE": 1.4270833333333333,
+        "RMSE": 1.6747201258717828,
+        "QWK": 0.41190198366394404,
+        "pearson": 0.7119188874196477,
+        "bias": 0.11458333333333333,
+        "exact_agreement": 0.0,
+        "adjacent_agreement_1": 0.4166666666666667
+      }
+    }
+  },
+  "test_is_primary": true,
+  "methodology_note": "Chỉ metric test đã khóa dùng làm kết quả tổng quát hóa."
+}

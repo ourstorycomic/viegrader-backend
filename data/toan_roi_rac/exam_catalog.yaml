@@ -1,0 +1,30 @@
+course_id: IT04
+course_name: Toán Rời Rạc
+catalog_version: "1.0"
+exams:
+  De_1:
+    rubric: rubric_de_1.yaml
+    prompt: >-
+      Đề 1 gồm 10 ý: số hàng nghìn không lặp/có lặp; chọn sinh viên từ ba
+      nhóm A(6), B(7), C(8); chia bộ bài 52 quân; số miền tạo bởi 20 đường thẳng.
+  De_2:
+    rubric: rubric_de_2.yaml
+    prompt: >-
+      Đề 2 gồm 10 ý: số hàng nghìn có thể lặp/lặp không quá hai lần; chọn sinh
+      viên từ ba nhóm; chia 52 quân thành 10, 12, 14, 16 quân; 20 đường thẳng.
+  De_3:
+    rubric: rubric_de_3.yaml
+    prompt: >-
+      Đề 3 gồm 10 ý: chọn buồng trong tòa nhà 11 tầng; số có ba chữ số chia
+      hết cho 2, 3 hoặc 5; phiếu 10 câu có thể bỏ trống; dãy nhị phân; 17 đường thẳng.
+  De_4:
+    rubric: rubric_de_4.yaml
+    prompt: >-
+      Đề 4 gồm 10 ý: chọn buồng và bốn tầng liền kề; số có ba chữ số chia hết
+      cho 2, 3 hoặc 7; phiếu 10 câu đều trả lời; dãy nhị phân; 17 đường thẳng.
+  De_5:
+    rubric: rubric_de_5.yaml
+    prompt: >-
+      Đề 5 gồm 10 ý: số hàng nghìn không lặp/lặp không quá hai lần; chọn sinh
+      viên từ ba nhóm; dãy nhị phân; số miền tạo bởi 17 đường thẳng.
+

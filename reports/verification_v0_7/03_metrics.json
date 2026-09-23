@@ -1,0 +1,193 @@
+{
+  "model": "TF-IDF word+char + Ridge",
+  "alpha": 12.0,
+  "splits": {
+    "train": {
+      "n": 102,
+      "MAE": 1.2598039215686274,
+      "RMSE": 1.5533802483868628,
+      "QWK": 0.5771179039301311,
+      "pearson": 0.8106606422698135,
+      "bias": 0.00980392156862745,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.5490196078431373
+    },
+    "validation": {
+      "n": 24,
+      "MAE": 1.4270833333333333,
+      "RMSE": 1.6747201258717828,
+      "QWK": 0.41190198366394404,
+      "pearson": 0.7119188874196477,
+      "bias": 0.11458333333333333,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.4166666666666667
+    },
+    "test": {
+      "n": 24,
+      "MAE": 1.59375,
+      "RMSE": 1.8078244291597196,
+      "QWK": 0.28378378378378377,
+      "pearson": 0.5034500295125384,
+      "bias": -0.19791666666666666,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.4166666666666667
+    }
+  },
+  "per_exam": {
+    "train:De_1": {
+      "n": 81,
+      "MAE": 1.2530864197530864,
+      "RMSE": 1.5585289043450596,
+      "QWK": 0.5791655733403306,
+      "pearson": 0.8144141657733956,
+      "bias": -0.024691358024691357,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.5432098765432098
+    },
+    "train:De_2": {
+      "n": 13,
+      "MAE": 1.5,
+      "RMSE": 1.7012438888151131,
+      "QWK": 0.707105719237435,
+      "pearson": 0.9217293866643634,
+      "bias": 0.15384615384615385,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.46153846153846156
+    },
+    "train:De_3": {
+      "n": 6,
+      "MAE": 0.7916666666666666,
+      "RMSE": 1.0358169078880044,
+      "QWK": 0.21212121212121215,
+      "pearson": 0.5118906968889915,
+      "bias": -0.125,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.8333333333333334
+    },
+    "train:De_4": {
+      "n": 1,
+      "MAE": 0.5,
+      "RMSE": 0.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -0.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 1.0
+    },
+    "train:De_5": {
+      "n": 1,
+      "MAE": 2.25,
+      "RMSE": 2.25,
+      "QWK": null,
+      "pearson": null,
+      "bias": 2.25,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.0
+    },
+    "validation:De_1": {
+      "n": 18,
+      "MAE": 1.4722222222222223,
+      "RMSE": 1.7300449576688912,
+      "QWK": 0.4474885844748858,
+      "pearson": 0.7581425055034353,
+      "bias": 0.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.3888888888888889
+    },
+    "validation:De_2": {
+      "n": 3,
+      "MAE": 1.1666666666666667,
+      "RMSE": 1.399404635312222,
+      "QWK": 0.5263157894736841,
+      "pearson": 0.9607689228305228,
+      "bias": -0.6666666666666666,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.6666666666666666
+    },
+    "validation:De_3": {
+      "n": 1,
+      "MAE": 2.25,
+      "RMSE": 2.25,
+      "QWK": null,
+      "pearson": null,
+      "bias": -2.25,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.0
+    },
+    "validation:De_4": {
+      "n": 1,
+      "MAE": 0.5,
+      "RMSE": 0.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -0.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 1.0
+    },
+    "validation:De_5": {
+      "n": 1,
+      "MAE": 1.5,
+      "RMSE": 1.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -1.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.0
+    },
+    "test:De_1": {
+      "n": 18,
+      "MAE": 1.6527777777777777,
+      "RMSE": 1.871756453768017,
+      "QWK": 0.3317102860620815,
+      "pearson": 0.5554439976134383,
+      "bias": 0.125,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.3888888888888889
+    },
+    "test:De_2": {
+      "n": 3,
+      "MAE": 1.3333333333333333,
+      "RMSE": 1.4860462083439174,
+      "QWK": 0.5263157894736841,
+      "pearson": 0.9607689228305228,
+      "bias": -0.8333333333333334,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.6666666666666666
+    },
+    "test:De_3": {
+      "n": 1,
+      "MAE": 2.5,
+      "RMSE": 2.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -2.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.0
+    },
+    "test:De_4": {
+      "n": 1,
+      "MAE": 0.5,
+      "RMSE": 0.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -0.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 1.0
+    },
+    "test:De_5": {
+      "n": 1,
+      "MAE": 1.5,
+      "RMSE": 1.5,
+      "QWK": null,
+      "pearson": null,
+      "bias": -1.5,
+      "exact_agreement": 0.0,
+      "adjacent_agreement_1": 0.0
+    }
+  },
+  "schema": "viegrader.it04.model/v2",
+  "created_at": "2026-09-11T03:06:49.556272+00:00",
+  "label_granularity": "total_only",
+  "n_training_eligible": 102,
+  "data_leakage_check": "PASS: fit chỉ trên split=train"
+}

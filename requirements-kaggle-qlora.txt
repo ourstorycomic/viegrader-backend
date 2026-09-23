@@ -1,0 +1,9 @@
+# Cài sau các thư viện torch/CUDA có sẵn trên Kaggle.
+transformers>=4.46
+peft>=0.13
+accelerate>=1.0
+bitsandbytes>=0.43
+datasets>=2.20
+trl>=0.12,<0.14
+safetensors>=0.4
+bert-score>=0.3.13

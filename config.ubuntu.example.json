@@ -1,0 +1,37 @@
+{
+  "server": {
+    "host": "0.0.0.0",
+    "port": 7860,
+    "share": false,
+    "allowed_paths": [
+      "/opt/viegrader/data",
+      "/opt/viegrader/artifacts",
+      "/opt/viegrader/reports",
+      "/opt/viegrader/logs"
+    ]
+  },
+  "paths": {
+    "data_dir": "/opt/viegrader/data",
+    "artifact_dir": "/opt/viegrader/artifacts",
+    "report_dir": "/opt/viegrader/reports",
+    "log_dir": "/opt/viegrader/logs"
+  },
+  "qlora": {
+    "preset": "rtx_5060_ti_16gb",
+    "max_seq_length": 1024,
+    "batch_size": 1,
+    "gradient_accumulation_steps": 16,
+    "memory_fraction": 0.92,
+    "quantization": "nf4",
+    "double_quantization": true,
+    "compute_dtype": "auto_bf16",
+    "optimizer": "paged_adamw_8bit",
+    "attention": "sdpa",
+    "gradient_checkpointing": true
+  },
+  "huggingface": {
+    "base_model": "Viet-Mistral/Vistral-7B-Chat",
+    "token_env": "HF_TOKEN",
+    "private_repo": true
+  }
+}

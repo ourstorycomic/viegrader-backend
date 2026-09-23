@@ -1,0 +1,69 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "viegrader"
+version = "0.7.0"
+description = "Hệ thống chấm điểm tự động bài luận / bài kiểm tra tự luận tiếng Việt theo rubric (AES cho tiếng Việt)"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Nhóm nghiên cứu NCKH 2026" }]
+keywords = ["automated essay scoring", "vietnamese", "nlp", "rubric", "education"]
+
+dependencies = [
+    "numpy>=1.23",
+    "pandas>=1.5",
+    "scikit-learn>=1.2",
+    "scipy>=1.9",
+    "PyYAML>=6.0",
+]
+
+[project.optional-dependencies]
+# Đặc trưng ngữ nghĩa sâu (PhoBERT). Cần GPU để huấn luyện, CPU vẫn suy luận được.
+deep = ["torch>=2.7", "transformers>=4.48,<5", "sentencepiece>=0.2"]
+# Vistral-7B QLoRA. Nên dùng môi trường Linux có CUDA.
+qlora = [
+    "torch>=2.7", "transformers>=4.48,<5", "peft>=0.14", "accelerate>=1.2",
+    "bitsandbytes>=0.48", "datasets>=3.0", "trl>=0.12,<0.30", "safetensors>=0.5"
+]
+# Đánh giá phản hồi sinh tự động.
+evaluation = ["bert-score>=0.3.13"]
+# API triển khai và kết nối Moodle.
+api = ["fastapi>=0.115", "uvicorn>=0.30", "pydantic>=2.8"]
+teacher-portal = ["fastapi>=0.115", "uvicorn>=0.30", "python-multipart>=0.0.9",
+                  "python-docx>=1.1", "pdfplumber>=0.10", "requests>=2.31"]
+moodle = ["requests>=2.31"]
+hub = ["huggingface_hub>=0.27"]
+reports = ["openpyxl>=3.1", "python-docx>=1.1", "reportlab>=4.0"]
+gui = [
+    "gradio>=5.0,<7", "huggingface_hub>=0.27", "requests>=2.31",
+    "httpx[socks]>=0.27", "socksio>=1.0", "openpyxl>=3.1",
+    "python-docx>=1.1", "reportlab>=4.0"
+]
+# Tách từ / gán nhãn từ loại tiếng Việt
+vinlp = ["underthesea>=6.7", "pyvi>=0.1.1"]
+# Đọc/ghi định dạng tài liệu
+docs = ["python-docx>=1.1", "openpyxl>=3.1", "pdfplumber>=0.10"]
+rag = ["PyMuPDF>=1.24"]
+# Chấm bằng LLM theo rubric
+llm = ["anthropic>=0.34", "openai>=1.30"]
+# Mô hình cây tăng cường
+boost = ["xgboost>=2.0", "lightgbm>=4.0"]
+dev = ["pytest>=7", "ruff>=0.4"]
+all = ["viegrader[deep,vinlp,docs,llm,boost,qlora,evaluation,api,moodle,hub,gui,reports]"]
+
+[project.scripts]
+viegrader = "viegrader.cli:main"
+viegrader-gui = "viegrader.gui.app:launch"
+viegrader-teacher-portal = "viegrader.teacher_portal:main"
+
+[tool.setuptools.packages.find]
+include = ["viegrader*"]
+
+[tool.setuptools.package-data]
+viegrader = ["resources/*.txt", "resources/*.json", "teacher_portal/*.html"]
+
+[tool.ruff]
+line-length = 100

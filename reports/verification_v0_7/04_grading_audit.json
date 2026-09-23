@@ -1,0 +1,19 @@
+{
+  "schema": "viegrader.it04.grading/v1",
+  "created_at": "2026-09-11T03:06:51.749598+00:00",
+  "n_scored": 150,
+  "n_human_review": 140,
+  "review_rate": 0.9333333333333333,
+  "grading_modes": {
+    "model_fallback": 132,
+    "hybrid_rubric_model": 18
+  },
+  "mean_scores": {
+    "model_total": 7.4867,
+    "rubric_total": 5.63,
+    "final_total": 7.4867
+  },
+  "rubric_weight": 0.0,
+  "min_section_coverage": 0.6,
+  "warning": "Điểm câu là rule_based_estimate; cần giảng viên duyệt trước khi công bố."
+}

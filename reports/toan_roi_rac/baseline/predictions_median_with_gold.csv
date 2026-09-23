@@ -1,0 +1,25 @@
+﻿essay_id,gold_total,teacher_feedback,exam_id,label_granularity,label_source,dataset_status,split,total,run_std,n_runs
+DM-5f7a4e677a745428,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-63378f89d7d951bf,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,8.0,0.0,1
+DM-431d9b0757841026,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-0336f46ceb47b0a0,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.25,0.0,1
+DM-eb6da56a748004c7,4,"Bài làm chưa đạt. Sai nhiều kiến thức cơ bản, cần xem lại lý thuyết.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.25,0.0,1
+DM-c1db14922b384176,5,Bài làm đạt yêu cầu cơ bản. Cần chú ý ôn tập và trình bày cẩn thận hơn.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-363c103ebad3bb7c,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,8.0,0.0,1
+DM-3ca476bf1751e492,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.25,0.0,1
+DM-13a3da5d9ba61550,5,Bài làm đạt yêu cầu cơ bản. Cần chú ý ôn tập và trình bày cẩn thận hơn.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.0,0.0,1
+DM-6291bb78e86414f6,4,"Bài làm chưa đạt. Sai nhiều kiến thức cơ bản, cần xem lại lý thuyết.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.25,0.0,1
+DM-344a4b321d3cff7b,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-0a70c6e893eaa98a,5,Bài làm đạt yêu cầu cơ bản. Cần chú ý ôn tập và trình bày cẩn thận hơn.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-136cfaea61863f40,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-1587d3ebf7287f53,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.75,0.0,1
+DM-441d7e3e8d3e5bdf,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-81f47b543a0ae6e3,5,Bài làm đạt yêu cầu cơ bản. Cần chú ý ôn tập và trình bày cẩn thận hơn.,De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-bdea865cf1505d69,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.75,0.0,1
+DM-fd7f30f6f25cc63d,10,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_1,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.25,0.0,1
+DM-d97f42e2347c0b33,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_2,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.0,0.0,1
+DM-9e7266e4a71ea75d,6,Bài làm đạt yêu cầu cơ bản. Cần chú ý ôn tập và trình bày cẩn thận hơn.,De_2,total_only,Nhan_Vang_Hoan_Chinh,keep,test,6.75,0.0,1
+DM-a6348bfee7956aa7,10,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_2,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.75,0.0,1
+DM-61cc00a1bbd10323,10,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_3,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-6865cd90c21e9f2d,8,Bài làm khá tốt. Còn một vài sai sót nhỏ trong tính toán hoặc thiếu ý.,De_4,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1
+DM-4a2119f8d098f926,9,"Bài làm xuất sắc. Tính toán chính xác, nắm vững kiến thức.",De_5,total_only,Nhan_Vang_Hoan_Chinh,keep,test,7.5,0.0,1

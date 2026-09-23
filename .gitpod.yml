@@ -1,0 +1,11 @@
+tasks:
+  - name: VieGrader Backend Setup
+    init: |
+      python3 -m pip install --upgrade pip
+      python3 -m pip install -e '.[all]'
+    command: |
+      uvicorn viegrader.teacher_portal:app --host 0.0.0.0 --port 8088
+ports:
+  - port: 8088
+    onOpen: ignore
+    visibility: public

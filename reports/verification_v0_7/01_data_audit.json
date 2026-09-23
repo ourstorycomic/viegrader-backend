@@ -1,0 +1,48 @@
+{
+  "schema": "viegrader.it04.standardized/v1",
+  "created_at": "2026-09-11T03:06:48.818653+00:00",
+  "source": "../verification_it04_pipeline/dataset.jsonl",
+  "n_input": 150,
+  "n_prepared": 150,
+  "n_ready": 150,
+  "n_rejected": 0,
+  "n_training_eligible": 102,
+  "counts_by_split": {
+    "test": 24,
+    "train": 102,
+    "validation": 24
+  },
+  "counts_by_exam": {
+    "De_1": 117,
+    "De_2": 19,
+    "De_3": 8,
+    "De_4": 3,
+    "De_5": 3
+  },
+  "score_summary": {
+    "test": {
+      "count": 24,
+      "mean": 7.6667,
+      "std": 1.9708,
+      "min": 4.0,
+      "max": 10.0
+    },
+    "train": {
+      "count": 102,
+      "mean": 7.4804,
+      "std": 1.876,
+      "min": 3.0,
+      "max": 10.0
+    },
+    "validation": {
+      "count": 24,
+      "mean": 7.375,
+      "std": 1.9068,
+      "min": 4.0,
+      "max": 10.0
+    }
+  },
+  "issues": {},
+  "label_granularity": "total_only",
+  "leakage_guard": "Giữ split đã khóa; chỉ training_eligible=true và split=train được train."
+}
