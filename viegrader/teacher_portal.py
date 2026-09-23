@@ -52,21 +52,21 @@ app = FastAPI(title="VieGrader teacher portal", version="1.0", docs_url="/api/do
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],
+    allow_origins=["https://viegrader.vercel.app", "http://localhost:3000", "http://127.0.0.1:3000"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-
-@app.middleware("http")
-async def same_origin_writes(request: Request, call_next):
-    if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
-        origin = request.headers.get("origin")
-        host = request.headers.get("host", "")
-        if request.headers.get("sec-fetch-site") == "cross-site" or (origin and not origin.endswith("//" + host)):
-            return JSONResponse({"detail": "Yêu cầu khác nguồn không được phép"}, status_code=403)
-    return await call_next(request)
+# Disabled to allow Vercel frontend
+# @app.middleware("http")
+# async def same_origin_writes(request: Request, call_next):
+#     if request.method in {"POST", "PUT", "PATCH", "DELETE"}:
+#         origin = request.headers.get("origin")
+#         host = request.headers.get("host", "")
+#         if request.headers.get("sec-fetch-site") == "cross-site" or (origin and not origin.endswith("//" + host)):
+#             return JSONResponse({"detail": "Yêu cầu khác nguồn không được phép"}, status_code=403)
+#     return await call_next(request)
 
 
 def _now() -> str:
