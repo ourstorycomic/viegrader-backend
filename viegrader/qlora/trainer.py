@@ -45,6 +45,8 @@ def _supported_kwargs(callable_obj: Any, values: Mapping[str, Any]) -> Dict[str,
 
 def _as_token_ids(value: Any) -> List[int]:
     """Chuẩn hóa đầu ra tokenizer/chat template thành danh sách token ID."""
+    if hasattr(value, "keys") and "input_ids" in value:
+        value = value["input_ids"]
     if hasattr(value, "tolist"):
         value = value.tolist()
     if value and isinstance(value[0], list):
@@ -396,7 +398,7 @@ def train_qlora(
     model = AutoModelForCausalLM.from_pretrained(
         cfg.model_name,
         quantization_config=quantization,
-        device_map={"": 0},
+        device_map="auto",
         dtype=compute_dtype,
         low_cpu_mem_usage=True,
         attn_implementation=cfg.attn_implementation,
@@ -462,7 +464,15 @@ def train_qlora(
         trainer_values["tokenizer"] = tokenizer
 
     trainer = Trainer(**_supported_kwargs(Trainer.__init__, trainer_values))
-    train_output = trainer.train()
+    
+    resume_path = os.environ.get("VIEGRADER_RESUME_CHECKPOINT")
+    if resume_path and Path(resume_path).is_dir():
+        print(f"RESUMING TRAINING FROM: {resume_path}")
+        train_output = trainer.train(resume_from_checkpoint=resume_path)
+    else:
+        train_output = trainer.train()
+        
+    trainer.save_model(str(output_dir))
 
     trainer.model.save_pretrained(output_dir)
     tokenizer.save_pretrained(output_dir)

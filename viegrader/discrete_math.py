@@ -570,7 +570,7 @@ def score_total_qlora(
     tokenizer.truncation_side = "left"
     tokenizer.padding_side = "left"
     model = AutoModelForCausalLM.from_pretrained(
-        model_name, device_map={"": 0}, quantization_config=quant,
+        model_name, device_map="auto", quantization_config=quant,
         dtype=dtype, low_cpu_mem_usage=True, attn_implementation="sdpa",
     )
     if adapter_path is not None:

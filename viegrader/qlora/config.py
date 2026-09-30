@@ -20,7 +20,7 @@ class QLoRAConfig:
     optim: str = "paged_adamw_8bit"
     gradient_checkpointing: bool = True
     use_bf16: Optional[bool] = None
-    use_tf32: bool = True
+    use_tf32: bool = False
     packing: bool = False
     dataloader_num_workers: int = 2
     memory_fraction: float = 0.92
