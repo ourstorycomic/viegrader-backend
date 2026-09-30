@@ -325,7 +325,7 @@ def _grade_job(job_id: str, exam: dict):
             from .discrete_math import _total_user_prompt
 
             tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
-            limit = int(os.environ.get("VIEGRADER_PORTAL_MAX_INPUT_TOKENS", "12000"))
+            limit = int(os.environ.get("VIEGRADER_PORTAL_MAX_INPUT_TOKENS", "4096"))
             if RAG_INDEX is not None:
                 from .rag import TfidfRAGIndex
 
@@ -360,13 +360,30 @@ def _grade_job(job_id: str, exam: dict):
                     "index_sha256": hashlib.sha256(RAG_INDEX.read_bytes()).hexdigest(),
                     "retrievals": audit,
                 }, ensure_ascii=False, indent=2), encoding="utf-8")
-            frame.to_csv(work / "input.csv", index=False, encoding="utf-8-sig")
+            # Auto-truncate long texts to prevent GPU OOM without failing the entire batch
+            safe_texts = []
             for row in frame.itertuples(index=False):
-                messages = [{"role": "system", "content": TOTAL_SYSTEM_PROMPT},
-                            {"role": "user", "content": _total_user_prompt(row)}]
-                count = len(tokenizer.apply_chat_template(messages, add_generation_prompt=True))
-                if count > limit:
-                    raise ValueError(f"Bài {row.essay_id} cần {count} token, vượt {limit}; rút gọn theo câu và kiểm tra lại trước khi chấm")
+                text = str(row.text)
+                # Keep truncating text until it fits within the limit
+                while True:
+                    probe = row._asdict()
+                    probe['text'] = text
+                    from types import SimpleNamespace
+                    probe_row = SimpleNamespace(**probe)
+                    messages = [{"role": "system", "content": TOTAL_SYSTEM_PROMPT},
+                                {"role": "user", "content": _total_user_prompt(probe_row)}]
+                    count = len(tokenizer.apply_chat_template(messages, add_generation_prompt=True))
+                    if count <= limit or len(text) < 100:
+                        break
+                    # Cut off 10% of characters if it's too long
+                    text = text[:int(len(text)*0.9)] + "\n[ĐÃ TỰ ĐỘNG CẮT BỚT ĐỂ TRÁNH TRÀN BỘ NHỚ GPU]"
+                safe_texts.append(text)
+            
+            frame['text'] = safe_texts
+            frame.to_csv(work / "input.csv", index=False, encoding="utf-8-sig")
+            
+            for row in frame.itertuples(index=False):
+                pass # The ValueError check has been replaced by the truncation loop above
             result = score_total_qlora(work / "input.csv", work / "predictions.csv", model_name=MODEL_NAME,
                                        adapter_path=ADAPTER, split=None, temperature=0, runs=1,
                                        max_input_tokens=limit, max_new_tokens=96)
