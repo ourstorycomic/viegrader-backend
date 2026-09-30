@@ -325,7 +325,9 @@ def _grade_job(job_id: str, exam: dict):
             from .discrete_math import _total_user_prompt
 
             tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
-            limit = int(os.environ.get("VIEGRADER_PORTAL_MAX_INPUT_TOKENS", "4096"))
+            import torch
+            default_limit = "12000" if torch.cuda.device_count() > 1 else "4096"
+            limit = int(os.environ.get("VIEGRADER_PORTAL_MAX_INPUT_TOKENS", default_limit))
             if RAG_INDEX is not None:
                 from .rag import TfidfRAGIndex
 
