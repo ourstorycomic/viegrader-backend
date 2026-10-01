@@ -326,8 +326,12 @@ def _grade_job(job_id: str, exam: dict):
 
             tokenizer = AutoTokenizer.from_pretrained(MODEL_NAME, use_fast=True)
             import torch
-            default_limit = "12000" if torch.cuda.device_count() > 1 else "4096"
+            # 2x T4 = 30GB: safe limit 6000 tokens (model 14GB + KV cache ~2GB + overhead)
+            # 1x T4 = 15GB: safe limit 3584 tokens
+            default_limit = "6000" if torch.cuda.device_count() > 1 else "3584"
             limit = int(os.environ.get("VIEGRADER_PORTAL_MAX_INPUT_TOKENS", default_limit))
+            # Help reduce CUDA memory fragmentation
+            os.environ.setdefault("PYTORCH_CUDA_ALLOC_CONF", "expandable_segments:True")
             if RAG_INDEX is not None:
                 from .rag import TfidfRAGIndex
 
