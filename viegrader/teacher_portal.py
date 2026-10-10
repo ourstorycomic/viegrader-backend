@@ -613,6 +613,62 @@ def index():
     return HTMLResponse(html.read_text(encoding="utf-8"))
 
 
+
+from fastapi import UploadFile, File, HTTPException
+from fastapi.responses import Response
+import io
+
+@app.post("/api/v1/data/auto-clean", dependencies=[Depends(auth)])
+async def api_auto_clean(file: UploadFile = File(...)):
+    contents = await file.read()
+    try:
+        from viegrader.data_cleaner import auto_clean_data
+        clean_df = auto_clean_data(contents, file.filename)
+        csv_buffer = io.StringIO()
+        clean_df.to_csv(csv_buffer, index=False, encoding="utf-8-sig")
+        return Response(
+            content=csv_buffer.getvalue(),
+            media_type="text/csv",
+            headers={"Content-Disposition": f'attachment; filename="Cleaned_{file.filename}.csv"'}
+        )
+    except Exception as e:
+        raise HTTPException(400, f"Lỗi làm sạch dữ liệu: {str(e)}")
+
+
+
+@app.post("/api/v1/rubric/generate", dependencies=[Depends(auth)])
+async def api_generate_rubric(question_text: str = Form(...), answer_text: str = Form(...), api_key: str = Form("")):
+    prompt = f"""Bạn là một giáo viên chấm thi khắt khe. Dựa vào Đề bài và Đáp án dưới đây, hãy tự động tạo ra một Barem chấm điểm (Rubric) chi tiết bằng định dạng YAML. 
+Bắt buộc có cấu trúc:
+name: "Tên bài thi"
+description: "Mô tả"
+criteria:
+  - name: "Câu 1"
+    description: "..."
+    max_score: 2.0
+    levels:
+      - score: 0
+        description: "Sai"
+      - score: 2.0
+        description: "Đúng"
+
+Đề bài: {question_text}
+Đáp án: {answer_text}
+Chỉ trả về YAML hợp lệ, không thêm text khác."""
+    try:
+        import google.generativeai as genai
+        key = api_key.strip() or os.environ.get("GEMINI_API_KEY", "")
+        if not key:
+            raise ValueError("Thiếu Gemini API Key. Vui lòng nhập khóa API.")
+        genai.configure(api_key=key)
+        model = genai.GenerativeModel('gemini-1.5-flash')
+        response = model.generate_content(prompt)
+        yaml_str = response.text.replace('```yaml', '').replace('```', '').strip()
+        return {"rubric_yaml": yaml_str}
+    except Exception as e:
+        raise HTTPException(400, f"Lỗi sinh Rubric: {str(e)}")
+
+
 def main() -> None:
     import uvicorn
 
